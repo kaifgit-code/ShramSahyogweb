@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShramSahyog — Book a verified cooperative worker</title>
+<meta name="description" content="ShramSahyog: request or offer household and community services through a worker-owned cooperative marketplace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar__inner">
+    <button class="topbar__mark" data-nav="home" type="button">ShramSahyog</button>
+    <nav class="topbar__nav">
+      <button data-nav="find" type="button" data-i18n="nav.find">Find a worker</button>
+      <button data-nav="register" type="button" data-i18n="nav.register">Register as worker</button>
+      <button data-nav="dashboard" type="button" data-i18n="nav.dashboard">Worker dashboard</button>
+      <button data-nav="bookings" type="button" data-i18n="nav.bookings">My bookings</button>
+      <button data-nav="support" type="button" data-i18n="nav.support">Support</button>
+      <button data-nav="admin" type="button" data-i18n="nav.admin">Cooperative admin</button>
+    </nav>
+    <div class="topbar__actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙 Dark</button>
+      <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">EN / हिं</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME -->
+  <section class="view" data-view="home">
+    <div class="home-hero">
+      <p class="eyebrow" data-i18n="home.eyebrow">Cooperative-owned · Worker-governed</p>
+      <h1 data-i18n="home.title">Book help you can trust. Get paid work that's fair.</h1>
+      <p class="home-hero__lede" data-i18n="home.lede">ShramSahyog connects households with verified workers from local labour cooperatives — electricians, cooks, caregivers, drivers and more.</p>
+      <div class="home-hero__actions">
+        <button class="btn btn--primary" data-nav="find" type="button" data-i18n="home.ctaCustomer">I need a service</button>
+        <button class="btn btn--ghost" data-nav="register" type="button" data-i18n="home.ctaWorker">I provide services</button>
+      </div>
+    </div>
+
+    <div class="quick-grid">
+      <button class="quick-card emergency" id="emergencyBtn" type="button" data-i18n="home.emergency">🚨 Emergency help</button>
+      <button class="quick-card" data-nav="support" type="button" data-i18n="home.howItWorks">📖 How it works</button>
+    </div>
+
+    <div class="home-grid">
+      <div class="card">
+        <h3 data-i18n="home.card1Title">1. Ask</h3>
+        <p data-i18n="home.card1Body">Describe what you need — category, city, when. Takes under a minute.</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="home.card2Title">2. Match</h3>
+        <p data-i18n="home.card2Body">SmartMatch finds verified, available workers near you, ranked by rating.</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="home.card3Title">3. Pay &amp; rate</h3>
+        <p data-i18n="home.card3Body">Pay by UPI or cash, get a digital invoice, and rate the work.</p>
+      </div>
+    </div>
+
+    <div class="offline-card">
+      <div>
+        <h3 data-i18n="home.offlineTitle">No smartphone? No problem.</h3>
+        <p data-i18n="home.offlineBody">Workers and customers without the app can request help by call or SMS. Try the simulated flow below.</p>
+      </div>
+      <button class="btn btn--dark" id="simulateSmsBtn" type="button" data-i18n="home.offlineCta">Simulate SMS / IVR request</button>
+    </div>
+  </section>
+
+  <!-- FIND A WORKER (customer) -->
+  <section class="view" data-view="find">
+    <h2 data-i18n="find.title">Find a verified worker</h2>
+    <p class="view-sub" data-i18n="find.sub">Fill this in once — SmartMatch does the rest.</p>
+
+    <form class="panel form-grid" id="requestForm">
+      <label>
+        <span data-i18n="find.name">Your name</span>
+        <input type="text" name="customerName" required>
+      </label>
+      <label>
+        <span data-i18n="find.phone">Phone number</span>
+        <input type="tel" name="customerPhone" pattern="[0-9]{10}" placeholder="9876543210" required>
+      </label>
+      <label>
+        <span data-i18n="find.category">Service needed</span>
+        <select name="category" id="categorySelect" required></select>
+      </label>
+      <label>
+        <span data-i18n="find.city">Your city / town</span>
+        <select name="city" id="citySelect" required></select>
+      </label>
+      <label>
+        <span data-i18n="find.time">Preferred time</span>
+        <input type="text" name="preferredTime" placeholder="Today, evening">
+      </label>
+      <label class="span2">
+        <span data-i18n="find.desc">What do you need done?</span>
+        <textarea name="description" rows="2" placeholder="e.g. Fix a leaking kitchen tap"></textarea>
+      </label>
+      <label class="span2 checkline" style="flex-direction:row;">
+        <input type="checkbox" name="urgent" id="urgentCheck">
+        <span data-i18n="find.urgent">This is urgent (search all cities)</span>
+      </label>
+      <button class="btn btn--primary span2" type="submit" data-i18n="find.submit">Find matching workers</button>
+    </form>
+
+    <div id="matchResults" class="match-results" hidden>
+      <h3 data-i18n="find.resultsTitle">Matched workers</h3>
+      <div id="matchList" class="worker-list"></div>
+    </div>
+  </section>
+
+  <!-- REGISTER AS WORKER -->
+  <section class="view" data-view="register">
+    <h2 data-i18n="register.title">Join as a cooperative worker</h2>
+    <p class="view-sub" data-i18n="register.sub">One profile, verified once by your Labour Cooperative Society.</p>
+
+    <form class="panel form-grid" id="workerForm">
+      <label>
+        <span data-i18n="register.name">Full name</span>
+        <input type="text" name="name" required>
+      </label>
+      <label>
+        <span data-i18n="register.phone">Phone number</span>
+        <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="9876543210" required>
+      </label>
+      <label>
+        <span data-i18n="register.city">City / town</span>
+        <select name="city" id="workerCitySelect" required></select>
+      </label>
+      <label>
+        <span data-i18n="register.coop">Cooperative society (optional)</span>
+        <input type="text" name="coop" placeholder="e.g. Jamui Labour Cooperative">
+      </label>
+      <fieldset class="span2">
+        <legend data-i18n="register.skills">Skills (choose all that apply)</legend>
+        <div class="chip-group" id="skillChips"></div>
+      </fieldset>
+
+      <fieldset class="span2 kyc-box">
+        <legend data-i18n="register.kycTitle">🛡️ Worker verification (KYC)</legend>
+        <div class="form-grid" style="gap:14px 16px;">
+          <label>
+            <span data-i18n="register.kycStatus">Aadhaar KYC status</span>
+            <select name="kyc">
+              <option value="pending">Pending</option>
+              <option value="verified">Verified</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="register.certificate">Trade / skill certificate ID (optional)</span>
+            <input type="text" name="certificate" placeholder="e.g. ITI-EL-2291">
+          </label>
+        </div>
+        <p class="note" data-i18n="register.kycNote">Prototype only — real Aadhaar/KYC checks would run through an authorised verification provider.</p>
+      </fieldset>
+
+      <button class="btn btn--primary span2" type="submit" data-i18n="register.submit">Create my worker profile</button>
+    </form>
+  </section>
+
+  <!-- WORKER DASHBOARD -->
+  <section class="view" data-view="dashboard">
+    <h2 data-i18n="dash.title">Worker dashboard</h2>
+    <p class="view-sub" data-i18n="dash.sub">Continue as a registered worker to see requests and earnings.</p>
+
+    <div class="panel" id="workerPicker">
+      <label>
+        <span data-i18n="dash.pick">Continue as</span>
+        <select id="workerSelect"></select>
+      </label>
+    </div>
+
+    <div id="workerDashboardBody" hidden>
+      <div class="profile-card" id="workerProfileCard"></div>
+      <div class="stat-row" id="workerStats"></div>
+
+      <h3 data-i18n="dash.requestsTitle">Incoming requests</h3>
+      <div id="workerRequests" class="booking-list"></div>
+
+      <h3 data-i18n="dash.activeTitle">Active &amp; completed jobs</h3>
+      <div id="workerJobs" class="booking-list"></div>
+    </div>
+  </section>
+
+  <!-- MY BOOKINGS (customer) -->
+  <section class="view" data-view="bookings">
+    <h2 data-i18n="book.title">My bookings</h2>
+    <p class="view-sub" data-i18n="book.sub">Enter the phone number you booked with.</p>
+
+    <form class="panel form-inline" id="lookupForm">
+      <label>
+        <span data-i18n="book.phone">Phone number</span>
+        <input type="tel" id="lookupPhone" pattern="[0-9]{10}" placeholder="9876543210" required>
+      </label>
+      <button class="btn btn--primary" type="submit" data-i18n="book.submit">Show my bookings</button>
+    </form>
+
+    <div id="customerBookings" class="booking-list"></div>
+  </section>
+
+  <!-- SUPPORT -->
+  <section class="view" data-view="support">
+    <h2 data-i18n="support.title">Support &amp; complaints</h2>
+    <p class="view-sub" data-i18n="support.sub">Facing an issue with a booking or a worker? Raise it here.</p>
+
+    <form class="panel form-grid" id="complaintForm">
+      <label>
+        <span data-i18n="support.phone">Your phone number</span>
+        <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="9876543210" required>
+      </label>
+      <label>
+        <span data-i18n="support.type">Issue type</span>
+        <select name="type">
+          <option>Worker behaviour</option>
+          <option>Service quality</option>
+          <option>Payment issue</option>
+          <option>Other</option>
+        </select>
+      </label>
+      <label class="span2">
+        <span data-i18n="support.desc">Describe the issue</span>
+        <textarea name="text" rows="3" required></textarea>
+      </label>
+      <button class="btn btn--primary span2" type="submit" data-i18n="support.submit">Submit complaint</button>
+    </form>
+
+    <h3 data-i18n="support.listTitle" style="margin-top:28px;">Your complaints</h3>
+    <div id="complaintList"></div>
+  </section>
+
+  <!-- COOPERATIVE ADMIN -->
+  <section class="view" data-view="admin">
+    <h2 data-i18n="admin.title">Cooperative federation dashboard</h2>
+    <p class="view-sub" data-i18n="admin.sub">Read-only overview across all workers and bookings in this demo.</p>
+
+    <div class="stat-row" id="adminStats"></div>
+
+    <h3 data-i18n="admin.workersTitle">Workers</h3>
+    <div class="table-wrap"><table id="adminWorkersTable"><thead></thead><tbody></tbody></table></div>
+
+    <h3 data-i18n="admin.bookingsTitle">Bookings</h3>
+    <div class="table-wrap"><table id="adminBookingsTable"><thead></thead><tbody></tbody></table></div>
+
+    <h3 data-i18n="admin.complaintsTitle">Complaints</h3>
+    <div class="table-wrap"><table id="adminComplaintsTable"><thead></thead><tbody></tbody></table></div>
+
+    <button class="btn btn--ghost" id="resetDemoBtn" type="button" data-i18n="admin.reset">Reset demo data</button>
+  </section>
+
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span data-i18n="footer.text">ShramSahyog — a working prototype by Team ZERO, Smart India Hackathon 2026 (SIH26089). Demo data only, stored in your browser.</span>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
