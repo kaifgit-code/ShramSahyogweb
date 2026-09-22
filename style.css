@@ -50,22 +50,32 @@ button, input, select, textarea{font-family:inherit; font-size:15px;}
   border-bottom:1px solid var(--border);
 }
 [data-theme="dark"] .topbar{ background:rgba(18,22,26,0.92); }
-.topbar__inner{display:flex; align-items:center; gap:20px; height:60px; flex-wrap:wrap;}
+.topbar__row{display:flex; align-items:center; justify-content:space-between; gap:16px; height:56px; flex-wrap:nowrap;}
 .topbar__mark{
   font-family:var(--serif); font-weight:600; font-size:18px;
-  background:none; border:none; cursor:pointer; padding:0; color:var(--text);
+  background:none; border:none; cursor:pointer; padding:0; color:var(--text); white-space:nowrap;
 }
-.topbar__nav{display:flex; gap:6px; margin-left:auto; flex-wrap:wrap;}
+.topbar__nav{display:flex; gap:6px; flex-wrap:wrap; padding:0 0 10px;}
 .topbar__nav button{
   background:none; border:1px solid transparent; cursor:pointer;
-  font-size:13.5px; color:var(--text-soft); padding:7px 12px; border-radius:999px;
+  font-size:13.5px; color:var(--text-soft); padding:7px 12px; border-radius:999px; white-space:nowrap;
 }
 .topbar__nav button:hover{color:var(--text); border-color:var(--border);}
 .topbar__nav button.is-active{background:var(--ink); color:var(--paper);}
-.topbar__actions{display:flex; align-items:center; gap:8px;}
+.topbar__actions{display:flex; align-items:center; gap:8px; flex:none;}
 .lang-toggle, .theme-toggle{
   font-family:var(--mono); font-size:12.5px; border:1px solid var(--border);
-  background:var(--card-bg); color:var(--text); padding:6px 12px; border-radius:999px; cursor:pointer;
+  background:var(--card-bg); color:var(--text); padding:6px 12px; border-radius:999px; cursor:pointer; white-space:nowrap;
+}
+.icon-btn{
+  position:relative; border:1px solid var(--border); background:var(--card-bg); color:var(--text);
+  width:34px; height:34px; border-radius:50%; cursor:pointer; font-size:15px;
+  display:flex; align-items:center; justify-content:center;
+}
+.notif-dot{
+  position:absolute; top:-4px; right:-4px; background:var(--terra); color:#fff;
+  font-size:10px; font-weight:700; min-width:16px; height:16px; border-radius:999px;
+  display:flex; align-items:center; justify-content:center; padding:0 3px;
 }
 
 /* ---------- views ---------- */
@@ -190,6 +200,45 @@ tbody tr:last-child td{border-bottom:none;}
   max-width:90vw; text-align:center; z-index:100;
 }
 .toast--show{opacity:1; transform:translate(-50%,0);}
+
+/* ---------- browse tabs ---------- */
+.section-heading{font-size:20px; margin:8px 0 14px;}
+.tab-bar{display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; margin-bottom:16px;}
+.tab-bar .tab{
+  flex:none; border:1px solid var(--border); background:var(--card-bg); color:var(--text-soft);
+  padding:8px 16px; border-radius:999px; font-size:13.5px; font-weight:600; cursor:pointer; white-space:nowrap;
+}
+.tab-bar .tab.is-active{background:var(--marigold); color:#14202B; border-color:var(--marigold);}
+
+/* ---------- bottom nav (mobile-style bottom header) ---------- */
+body{ padding-bottom:64px; }
+.bottom-nav{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  display:flex; justify-content:space-around; align-items:center;
+  background:var(--card-bg); border-top:1px solid var(--border); height:60px;
+}
+.bottom-nav button{
+  background:none; border:none; cursor:pointer; color:var(--text-soft);
+  display:flex; flex-direction:column; align-items:center; gap:2px; font-size:10.5px; flex:1;
+}
+.bottom-nav button span{font-size:19px;}
+.bottom-nav button.is-active{color:var(--marigold);}
+@media (min-width:820px){ .bottom-nav{ display:none; } body{ padding-bottom:0; } }
+
+/* ---------- chat ---------- */
+.chat-box{border-top:1px dashed var(--border); margin-top:12px; padding-top:12px;}
+.chat-toggle{background:none; border:1px solid var(--border); color:var(--text); border-radius:999px; padding:6px 14px; font-size:12.5px; cursor:pointer;}
+.chat-messages{max-height:180px; overflow-y:auto; display:flex; flex-direction:column; gap:6px; margin:10px 0;}
+.chat-msg{max-width:78%; padding:8px 12px; border-radius:12px; font-size:13.5px; background:var(--paper-dim); align-self:flex-start;}
+.chat-msg.mine{align-self:flex-end; background:var(--marigold); color:#14202B;}
+.chat-msg .chat-meta{display:block; font-size:10.5px; opacity:.65; margin-top:3px;}
+.chat-form{display:flex; gap:8px;}
+.chat-form input{flex:1;}
+
+/* ---------- geo tracking ---------- */
+.geo-track{background:var(--paper-dim); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin-top:10px; font-size:13px;}
+.geo-bar{height:6px; border-radius:999px; background:var(--border); margin:8px 0; overflow:hidden;}
+.geo-bar__fill{height:100%; background:var(--green-bright); transition:width .3s ease;}
 
 /* ---------- support ---------- */
 .support-item{border:1px solid var(--border); border-radius:12px; padding:14px; background:var(--card-bg); margin-bottom:10px;}

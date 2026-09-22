@@ -7,6 +7,27 @@ const I18N = {
     "nav.bookings": "My bookings",
     "nav.support": "Support",
     "nav.admin": "Cooperative admin",
+    "nav.homeShort": "Home",
+    "nav.findShort": "Find",
+    "nav.dashboardShort": "Work",
+    "nav.bookingsShort": "Bookings",
+    "nav.notifShort": "Alerts",
+
+    "browse.title": "Browse workers by service",
+
+    "notif.title": "Notifications",
+    "notif.sub": "Updates on your bookings, payments and messages.",
+    "notif.markAll": "Mark all as read",
+    "notif.empty": "No notifications yet. Register as a worker or look up a booking to start seeing updates here.",
+
+    "chat.toggle": "💬 Chat",
+    "chat.placeholder": "Type a message…",
+    "chat.send": "Send",
+
+    "geo.start": "Start journey (simulate GPS)",
+    "geo.reached": "Mark as reached",
+    "geo.enroute": "On the way",
+    "geo.reachedLabel": "Reached",
 
     "home.eyebrow": "Cooperative-owned · Worker-governed",
     "home.title": "Book help you can trust. Get paid work that's fair.",
@@ -87,6 +108,27 @@ const I18N = {
     "nav.bookings": "मेरी बुकिंग",
     "nav.support": "सहायता",
     "nav.admin": "सहकारी एडमिन",
+    "nav.homeShort": "होम",
+    "nav.findShort": "खोजें",
+    "nav.dashboardShort": "काम",
+    "nav.bookingsShort": "बुकिंग",
+    "nav.notifShort": "सूचना",
+
+    "browse.title": "सेवा अनुसार कामगार देखें",
+
+    "notif.title": "सूचनाएं",
+    "notif.sub": "आपकी बुकिंग, भुगतान और संदेशों से जुड़ी जानकारी।",
+    "notif.markAll": "सभी को पढ़ा हुआ चिह्नित करें",
+    "notif.empty": "अभी कोई सूचना नहीं है। कामगार के रूप में जुड़ें या बुकिंग देखें।",
+
+    "chat.toggle": "💬 चैट",
+    "chat.placeholder": "संदेश लिखें…",
+    "chat.send": "भेजें",
+
+    "geo.start": "यात्रा शुरू करें (GPS सिम्युलेट)",
+    "geo.reached": "पहुंच गया चिह्नित करें",
+    "geo.enroute": "रास्ते में",
+    "geo.reachedLabel": "पहुंच गया",
 
     "home.eyebrow": "सहकारी-स्वामित्व · कामगार-संचालित",
     "home.title": "भरोसेमंद मदद बुक करें। सही मज़दूरी पाएं।",

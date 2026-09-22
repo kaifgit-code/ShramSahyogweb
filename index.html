@@ -13,21 +13,24 @@
 <body>
 
 <header class="topbar">
-  <div class="wrap topbar__inner">
+  <div class="wrap topbar__row">
     <button class="topbar__mark" data-nav="home" type="button">ShramSahyog</button>
-    <nav class="topbar__nav">
-      <button data-nav="find" type="button" data-i18n="nav.find">Find a worker</button>
-      <button data-nav="register" type="button" data-i18n="nav.register">Register as worker</button>
-      <button data-nav="dashboard" type="button" data-i18n="nav.dashboard">Worker dashboard</button>
-      <button data-nav="bookings" type="button" data-i18n="nav.bookings">My bookings</button>
-      <button data-nav="support" type="button" data-i18n="nav.support">Support</button>
-      <button data-nav="admin" type="button" data-i18n="nav.admin">Cooperative admin</button>
-    </nav>
     <div class="topbar__actions">
+      <button class="icon-btn" id="notifBell" data-nav="notifications" type="button" aria-label="Notifications">
+        🔔<span class="notif-dot" id="notifCount" hidden>0</span>
+      </button>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">🌙 Dark</button>
       <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">EN / हिं</button>
     </div>
   </div>
+  <nav class="topbar__nav wrap">
+    <button data-nav="find" type="button" data-i18n="nav.find">Find a worker</button>
+    <button data-nav="register" type="button" data-i18n="nav.register">Register as worker</button>
+    <button data-nav="dashboard" type="button" data-i18n="nav.dashboard">Worker dashboard</button>
+    <button data-nav="bookings" type="button" data-i18n="nav.bookings">My bookings</button>
+    <button data-nav="support" type="button" data-i18n="nav.support">Support</button>
+    <button data-nav="admin" type="button" data-i18n="nav.admin">Cooperative admin</button>
+  </nav>
 </header>
 
 <main class="wrap">
@@ -48,6 +51,10 @@
       <button class="quick-card emergency" id="emergencyBtn" type="button" data-i18n="home.emergency">🚨 Emergency help</button>
       <button class="quick-card" data-nav="support" type="button" data-i18n="home.howItWorks">📖 How it works</button>
     </div>
+
+    <h2 class="section-heading" data-i18n="browse.title">Browse workers by service</h2>
+    <div class="tab-bar" id="browseTabs"></div>
+    <div class="worker-list" id="browseList"></div>
 
     <div class="home-grid">
       <div class="card">
@@ -235,6 +242,14 @@
     <div id="complaintList"></div>
   </section>
 
+  <!-- NOTIFICATIONS -->
+  <section class="view" data-view="notifications">
+    <h2 data-i18n="notif.title">Notifications</h2>
+    <p class="view-sub" data-i18n="notif.sub">Updates on your bookings, payments and messages.</p>
+    <button class="btn btn--ghost btn--small" id="markAllReadBtn" data-i18n="notif.markAll" style="margin-bottom:16px;">Mark all as read</button>
+    <div id="notifList" class="booking-list"></div>
+  </section>
+
   <!-- COOPERATIVE ADMIN -->
   <section class="view" data-view="admin">
     <h2 data-i18n="admin.title">Cooperative federation dashboard</h2>
@@ -260,9 +275,18 @@
 
 <footer class="footer">
   <div class="wrap footer__inner">
-    <span data-i18n="footer.text">ShramSahyog — a working prototype by team SQUAD, Stratup Cell Sce Supaul. Demo data only, stored in your browser.</span>
+    <span data-i18n="footer.text">ShramSahyog — a working prototype by Team ZERO, Smart India Hackathon 2026 (SIH26089). Demo data only, stored in your browser.</span>
   </div>
 </footer>
+
+<!-- BOTTOM HEADER / MOBILE NAV -->
+<nav class="bottom-nav">
+  <button data-nav="home" type="button"><span>🏠</span><em data-i18n="nav.homeShort">Home</em></button>
+  <button data-nav="find" type="button"><span>🔎</span><em data-i18n="nav.findShort">Find</em></button>
+  <button data-nav="dashboard" type="button"><span>🧰</span><em data-i18n="nav.dashboardShort">Work</em></button>
+  <button data-nav="bookings" type="button"><span>📋</span><em data-i18n="nav.bookingsShort">Bookings</em></button>
+  <button data-nav="notifications" type="button"><span>🔔</span><em data-i18n="nav.notifShort">Alerts</em></button>
+</nav>
 
 <script src="data.js"></script>
 <script src="i18n.js"></script>

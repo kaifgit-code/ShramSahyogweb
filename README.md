@@ -25,6 +25,18 @@ no build step — plain HTML/CSS/JS, data kept in the browser's `localStorage`.
 - **EN / हिं toggle** — switches all key UI strings between English and Hindi.
 - **Light / dark theme toggle** — remembers your choice, and follows system
   preference on first visit.
+- **Chat per booking** — customer and worker can message each other inside
+  each booking card; new messages raise a notification for the other side.
+- **Simulated GPS tracking** — worker taps "Start journey", the app fakes a
+  distance + ETA, then "Mark as reached" shows how long the trip actually
+  took. Both sides see a live progress bar.
+- **Notifications** — a bell icon in the top bar (and bottom nav) badges
+  unread updates: new requests, accepted/declined jobs, worker arrival,
+  payments, ratings, and chat messages.
+- **Browse workers by service** — tabbed worker directory right on the home
+  page, sorted by KYC status and rating.
+- **Bottom navigation bar** — quick mobile-style access to Home / Find /
+  Dashboard / Bookings / Notifications, always visible.
 
 Ten sample workers are seeded on first load so SmartMatch has something to
 match against immediately. Use **Reset demo data** on the admin page to start over.
